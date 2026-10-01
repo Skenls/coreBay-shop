@@ -145,6 +145,3 @@ coreBay-shop/
 
 Проект распространяется под открытой лицензией [MIT](LICENSE).
 
-<div align="center">
-  <sub>Разработано для CoreBay. 2026.</sub>
-</div>
