@@ -1,0 +1,29 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Production build
+dist
+dist-ssr
+
+# Local environment & caches
+.DS_Store
+*.log
+.vite
+.env
+.env.*
+!.env.example
+
+# Raw design mockups, temporary screenshots & test assets
+*.jpg
+*.jpeg
+*.png
+!public/assets/**
+*.html
+!index.html
+
+# Local scripts, tests & internal prompt docs
+scripts/
+docs/
+src/__tests__/
