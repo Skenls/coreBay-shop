@@ -71,12 +71,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
       aria-label={product.name}
     >
       <motion.div
-        initial={{ scale: 0.2, rotate: -180, opacity: 0 }}
-        animate={{ scale: 1, rotate: 0, opacity: 1 }}
-        exit={{ scale: 0.2, rotate: 180, opacity: 0 }}
-        transition={{ type: 'spring', damping: 20, stiffness: 280 }}
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-[720px] bg-[#1E213D] border border-[#423189] rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_-15px_rgba(66,49,137,0.5)] overflow-hidden text-white my-auto max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-[720px] bg-[#1E213D] border border-[#423189] rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_-15px_rgba(66,49,137,0.5)] overflow-hidden text-white my-auto max-h-[90vh] flex flex-col transform-gpu"
       >
         {/* Close button (X) */}
         <button

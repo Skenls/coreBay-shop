@@ -151,19 +151,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
             type="button"
             onClick={() => setIsOpen(true)}
             className="relative p-2.5 sm:p-3 rounded-xl hover:bg-white/10 active:scale-95 transition-colors flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
-            animate={
-              totalCount > 0
-                ? {
-                    y: [0, -5, 0, -2, 0],
-                    transition: {
-                      duration: 1.2,
-                      repeat: Infinity,
-                      repeatDelay: 3,
-                      ease: 'easeInOut',
-                    },
-                  }
-                : { y: 0 }
-            }
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             aria-label={`Открыть корзину, товаров: ${totalCount}`}

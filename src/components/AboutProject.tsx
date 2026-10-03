@@ -87,13 +87,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
       ref={cardRef}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      whileHover={{ y: -6 }}
       transition={{
         duration: 0.6,
         delay: index * 0.08,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="relative bg-[#1E213D] text-white p-7 sm:p-9 rounded-2xl border border-white/10 shadow-xl hover:border-[#8B6FF0]/60 hover:shadow-2xl hover:shadow-purple-900/30 transition-[border-color,box-shadow] duration-300 group overflow-hidden flex flex-col justify-between"
+      className="relative bg-[#1E213D] text-white p-7 sm:p-9 rounded-2xl border border-white/10 shadow-xl hover:border-[#8B6FF0]/60 hover:shadow-2xl hover:shadow-purple-900/30 transition-[border-color,box-shadow] duration-300 group overflow-hidden flex flex-col justify-between transform-gpu"
     >
       {/* Ambient hover glow inside card */}
       <div className="absolute -top-16 -right-16 w-36 h-36 bg-[#8B6FF0]/10 rounded-full blur-2xl group-hover:bg-[#8B6FF0]/25 transition-colors duration-500 pointer-events-none" />

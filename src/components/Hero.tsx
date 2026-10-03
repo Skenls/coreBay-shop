@@ -20,16 +20,23 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
 
   // Graceful parallax translation upwards on scroll (active on desktop, disabled on mobile for 120fps)
   const [isMobile, setIsMobile] = React.useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
 
   React.useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches);
+    };
+    const checkMotionPreference = () => {
+      setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     };
     checkMobile();
+    checkMotionPreference();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  const shouldDisableParallax = isMobile || prefersReducedMotion;
+  
   const parallaxLeftY = useTransform(scrollY, [0, 800], [0, -180]);
   const parallaxRightY = useTransform(scrollY, [0, 800], [0, -135]);
   const titleY = useTransform(scrollY, [0, 600], [0, -75]);
@@ -71,10 +78,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
 
       {/* LEFT HANGING ITEM: Flagship GPU on main plane, intersecting headline */}
       <motion.div
-        style={{ y: isMobile ? 0 : parallaxLeftY }}
+        style={{ y: shouldDisableParallax ? 0 : parallaxLeftY }}
         className="absolute -left-14 xs:-left-16 sm:left-[-2%] md:left-[0%] lg:left-[3%] xl:left-[6%] top-20 sm:top-0 z-10 pointer-events-none opacity-95 sm:opacity-100 transition-opacity duration-300"
       >
-        <div className="animate-sway-left transform-gpu will-change-transform">
+        <div className="animate-sway-left transform-gpu">
           {/* Proportional container: 3 wires extend from ceiling (y=0) directly to GPU top edge; hidden on mobile */}
           <div className="relative w-60 xs:w-64 sm:w-80 md:w-96 lg:w-[32rem] xl:w-[38rem] aspect-[800/850]">
             {/* Wire 1 (left): directly touches left fan heatsink top edge */}
@@ -110,10 +117,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
 
       {/* RIGHT HANGING ITEM: MacBook on main plane, intersecting headline */}
       <motion.div
-        style={{ y: isMobile ? 0 : parallaxRightY }}
+        style={{ y: shouldDisableParallax ? 0 : parallaxRightY }}
         className="absolute -right-16 xs:-right-20 sm:right-[-2%] md:right-[0%] lg:right-[3%] xl:right-[6%] top-28 sm:top-0 z-10 pointer-events-none opacity-95 sm:opacity-100 transition-opacity duration-300"
       >
-        <div className="animate-sway-right transform-gpu will-change-transform">
+        <div className="animate-sway-right transform-gpu">
           {/* Proportional container: 3 wires extend from ceiling (y=0) directly to laptop lid top edge; hidden on mobile */}
           <div className="relative w-64 xs:w-72 sm:w-88 md:w-[26rem] lg:w-[34rem] xl:w-[40rem] aspect-[814/700]">
             {/* Wire 1 (left): directly touches top-left screen edge */}
@@ -149,7 +156,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
 
       {/* CENTER HEADLINE & CTA */}
       <motion.div
-        style={{ y: isMobile ? 0 : titleY, opacity: isMobile ? 1 : titleOpacity }}
+        style={{ y: shouldDisableParallax ? 0 : titleY, opacity: shouldDisableParallax ? 1 : titleOpacity }}
         className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center justify-center pt-8 sm:pt-0"
       >
 
@@ -161,8 +168,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 0.15 + index * 0.14,
-                duration: 0.7,
+                delay: prefersReducedMotion ? 0 : 0.15 + index * 0.14,
+                duration: prefersReducedMotion ? 0 : 0.7,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className={
@@ -180,7 +187,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.68, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: prefersReducedMotion ? 0 : 0.68, duration: prefersReducedMotion ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mt-4 sm:mt-7 max-w-xl text-sm sm:text-lg md:text-xl text-slate-700 font-medium leading-relaxed px-3 py-1 bg-white/75 sm:bg-white/40 backdrop-blur-[3px] sm:backdrop-blur-none rounded-xl"
         >
           Флагманские видеокарты, ультрабуки и компоненты для тех, кто строит будущее.
@@ -190,7 +197,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.86, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: prefersReducedMotion ? 0 : 0.86, duration: prefersReducedMotion ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0"
         >
           <button
@@ -214,7 +221,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.8 }}
+        transition={{ delay: prefersReducedMotion ? 0 : 1.1, duration: prefersReducedMotion ? 0 : 0.8 }}
         className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 cursor-pointer group select-none transition-transform hover:translate-y-0.5"
         role="button"
         tabIndex={0}

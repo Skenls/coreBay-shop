@@ -29,7 +29,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
           onSelect(product);
         }
       }}
-      className="group relative flex flex-col justify-between bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-5 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:border-[#423189] hover:shadow-[0_16px_36px_-10px_rgba(66,49,137,0.45)] select-none text-left focus:outline-none focus:ring-2 focus:ring-[#8B6FF0]/60"
+      className="group relative flex flex-col justify-between bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-5 cursor-pointer transition-all duration-300 hover:border-[#423189] hover:shadow-[0_16px_36px_-10px_rgba(66,49,137,0.45)] select-none text-left focus:outline-none focus:ring-2 focus:ring-[#8B6FF0]/60 transform-gpu md:hover:-translate-y-1.5"
     >
       {/* Top badges */}
       <div className="flex items-center justify-between gap-2 mb-3">
@@ -69,10 +69,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
           decoding="async"
           width="600"
           height="450"
-          className="max-h-full max-w-full object-contain transform-gpu transition-transform duration-200 ease-out group-hover:scale-105 drop-shadow-lg"
+          className="max-h-full max-w-full object-contain transform-gpu transition-transform duration-200 ease-out md:group-hover:scale-105 drop-shadow-lg"
         />
         {/* Quick View hover badge (desktop only to prevent mobile backdrop blur repaint) */}
-        <div className="hidden sm:flex absolute inset-0 bg-[#1E213D]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 items-center justify-center">
+        <div className="hidden md:flex absolute inset-0 bg-[#1E213D]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 items-center justify-center">
           <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#423189] text-white shadow-lg shadow-black/40">
             <Eye size={14} />
             Быстрый просмотр
@@ -81,7 +81,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
       </div>
 
       {/* Product Title in white font */}
-      <h3 className="text-white font-semibold text-base sm:text-lg mb-2.5 leading-snug line-clamp-2 group-hover:text-purple-200 transition-colors">
+      <h3 className="text-white font-semibold text-base sm:text-lg mb-2.5 leading-snug line-clamp-2 md:group-hover:text-purple-200 transition-colors">
         {product.name}
       </h3>
 

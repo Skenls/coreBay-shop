@@ -67,15 +67,23 @@ html.lenis, html.lenis body {
 .animate-sway-left {
   transform-origin: top center;
   animation: sway-left 6.5s ease-in-out infinite;
-  will-change: transform;
   backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .animate-sway-right {
   transform-origin: top center;
   animation: sway-right 8s ease-in-out infinite;
-  will-change: transform;
   backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Only animate on desktop - disable on mobile for 120fps native scrolling */
+@media (max-width: 767px) {
+  .animate-sway-left,
+  .animate-sway-right {
+    animation: none;
+  }
 }
 
 /* Mouse wheel scroll indicator animation */
@@ -106,6 +114,40 @@ html.lenis, html.lenis body {
 
 img {
   content-visibility: auto;
+}
+
+/* Disable hover effects on touch devices for better performance */
+@media (hover: none) {
+  .hover\:scale-105,
+  .hover\:-translate-y-1,
+  .hover\:-translate-y-1\.5,
+  .hover\:shadow-xl,
+  .group:hover .group-hover\:scale-110,
+  .group:hover .group-hover\:translate-x-1 {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Reduce blur and shadow intensity on mobile */
+@media (max-width: 767px) {
+  .blur-2xl {
+    filter: blur(32px) !important;
+  }
+  .blur-3xl {
+    filter: blur(40px) !important;
+  }
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+/* GPU acceleration for animated elements */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 @media (prefers-reduced-motion: reduce) {
