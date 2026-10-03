@@ -65,7 +65,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-md bg-black/60 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 sm:bg-black/60 sm:backdrop-blur-md overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-label={product.name}
@@ -97,7 +97,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
               <img
                 src={formatImagePath(product.image)}
                 alt={product.name}
-                className="max-h-48 sm:max-h-56 max-w-full object-contain drop-shadow-2xl"
+                className="max-h-48 sm:max-h-56 max-w-full object-contain md:drop-shadow-2xl drop-shadow-md"
               />
             </div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
   Cpu,
@@ -29,7 +29,6 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   suffix = '',
   duration = 2000,
 }) => {
-  const [currentValue, setCurrentValue] = useState(0);
   const containerRef = useRef<HTMLSpanElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.1 });
 
@@ -47,7 +46,10 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       const eased = easeOutExpo(progress);
-      setCurrentValue(Math.round(eased * target));
+      const val = Math.round(eased * target);
+      if (containerRef.current) {
+        containerRef.current.textContent = `${prefix}${val.toLocaleString('ru-RU')}${suffix}`;
+      }
 
       if (progress < 1) {
         frameId = requestAnimationFrame(updateCounter);
@@ -56,13 +58,11 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
 
     frameId = requestAnimationFrame(updateCounter);
     return () => cancelAnimationFrame(frameId);
-  }, [isInView, target, duration]);
+  }, [isInView, target, duration, prefix, suffix]);
 
   return (
     <span ref={containerRef} className="tabular-nums">
-      {prefix}
-      {currentValue.toLocaleString('ru-RU')}
-      {suffix}
+      {prefix}0{suffix}
     </span>
   );
 };
@@ -79,23 +79,23 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.1 });
+  const isInView = useInView(cardRef, { once: true, margin: '80px 0px 0px 0px', amount: 0.05 });
   const Icon = feature.icon;
 
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{
-        duration: 0.6,
-        delay: index * 0.08,
+        duration: 0.45,
+        delay: index * 0.06,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="relative bg-[#1E213D] text-white p-7 sm:p-9 rounded-2xl border border-white/10 shadow-xl hover:border-[#8B6FF0]/60 hover:shadow-2xl hover:shadow-purple-900/30 transition-[border-color,box-shadow] duration-300 group overflow-hidden flex flex-col justify-between transform-gpu"
+      className="relative bg-[#1E213D] text-white p-7 sm:p-9 rounded-2xl border border-white/10 shadow-xl md:hover:border-[#8B6FF0]/60 md:hover:shadow-2xl md:hover:shadow-purple-900/30 transition-[border-color,box-shadow] duration-300 group overflow-hidden flex flex-col justify-between transform-gpu"
     >
-      {/* Ambient hover glow inside card */}
-      <div className="absolute -top-16 -right-16 w-36 h-36 bg-[#8B6FF0]/10 rounded-full blur-2xl group-hover:bg-[#8B6FF0]/25 transition-colors duration-500 pointer-events-none" />
+      {/* Ambient hover glow inside card (desktop only) */}
+      <div className="hidden sm:block absolute -top-16 -right-16 w-36 h-36 bg-[#8B6FF0]/10 rounded-full blur-2xl group-hover:bg-[#8B6FF0]/25 transition-colors duration-500 pointer-events-none" />
 
       <div>
         <div className="flex items-center justify-between gap-4 mb-6">
@@ -203,7 +203,7 @@ export const AboutProject: React.FC<AboutProjectProps> = ({
       className={`relative py-20 sm:py-28 md:py-36 bg-gradient-to-b from-white via-slate-50/80 to-white overflow-hidden ${className}`}
     >
       {/* Ambient background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* STORY & MANIFESTO HEADER */}
@@ -280,8 +280,8 @@ export const AboutProject: React.FC<AboutProjectProps> = ({
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="relative rounded-3xl bg-gradient-to-br from-[#1E213D] via-[#222547] to-[#1E213D] border border-white/10 p-8 sm:p-12 shadow-2xl overflow-hidden"
         >
-          {/* Subtle background glow */}
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#8B6FF0]/10 rounded-full blur-3xl pointer-events-none" />
+          {/* Subtle background glow (desktop only) */}
+          <div className="hidden sm:block absolute top-0 right-1/4 w-96 h-96 bg-[#8B6FF0]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 relative z-10 divide-y md:divide-y-0 md:divide-x divide-white/10">
             {stats.map((stat, idx) => (

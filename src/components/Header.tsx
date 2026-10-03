@@ -101,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.25, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-40 bg-[#423189] text-white shadow-lg backdrop-blur-md select-none"
+      className="fixed top-0 left-0 right-0 z-40 bg-[#423189] text-white shadow-lg transform-gpu select-none"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
         {/* Left: CPU Logo + CoreBay Brand */}
@@ -111,10 +111,10 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
           className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-lg p-1"
           aria-label="CoreBay - На главную"
         >
-          <div className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+          <div className="transition-transform duration-300 md:group-hover:scale-110 md:group-hover:rotate-6">
             <CpuLogo className="w-8 h-8 sm:w-9 sm:h-9" />
           </div>
-          <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-white group-hover:text-amber-300 transition-colors">
+          <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-white md:group-hover:text-amber-300 transition-colors">
             CoreBay
           </span>
         </button>

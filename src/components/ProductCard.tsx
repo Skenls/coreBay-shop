@@ -29,7 +29,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
           onSelect(product);
         }
       }}
-      className="group relative flex flex-col justify-between bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-5 cursor-pointer transition-all duration-300 hover:border-[#423189] hover:shadow-[0_16px_36px_-10px_rgba(66,49,137,0.45)] select-none text-left focus:outline-none focus:ring-2 focus:ring-[#8B6FF0]/60 transform-gpu md:hover:-translate-y-1.5"
+      className="group relative flex flex-col justify-between bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-5 cursor-pointer transition-[border-color,box-shadow,transform] duration-300 md:hover:border-[#423189] md:hover:shadow-[0_16px_36px_-10px_rgba(66,49,137,0.45)] select-none text-left focus:outline-none focus:ring-2 focus:ring-[#8B6FF0]/60 transform-gpu md:hover:-translate-y-1.5"
     >
       {/* Top badges */}
       <div className="flex items-center justify-between gap-2 mb-3">
@@ -61,15 +61,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
       </div>
 
       {/* Top Image Container with smooth hover zoom */}
-      <div className="relative w-full h-48 sm:h-52 bg-[#171933] border border-[#25284B] rounded-xl flex items-center justify-center p-4 overflow-hidden mb-4 group-hover:border-[#353966] transition-colors">
+      <div className="relative w-full h-48 sm:h-52 bg-[#171933] border border-[#25284B] rounded-xl flex items-center justify-center p-4 overflow-hidden mb-4 md:group-hover:border-[#353966] transition-colors">
         <img
           src={formatImagePath(product.image)}
           alt={product.name}
-          loading="eager"
+          loading="lazy"
           decoding="async"
           width="600"
           height="450"
-          className="max-h-full max-w-full object-contain transform-gpu transition-transform duration-200 ease-out md:group-hover:scale-105 drop-shadow-lg"
+          className="max-h-full max-w-full object-contain transform-gpu transition-transform duration-200 ease-out md:group-hover:scale-105 md:drop-shadow-lg"
         />
         {/* Quick View hover badge (desktop only to prevent mobile backdrop blur repaint) */}
         <div className="hidden md:flex absolute inset-0 bg-[#1E213D]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 items-center justify-center">

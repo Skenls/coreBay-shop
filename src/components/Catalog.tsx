@@ -111,7 +111,7 @@ export const Catalog: React.FC = () => {
       </div>
 
       {/* Mobile Horizontal Scrollable Categories Chips Bar */}
-      <div className="lg:hidden flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar">
+      <div className="lg:hidden flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar touch-pan-x overscroll-x-contain">
         {CATEGORIES.map((cat) => {
           const isActive = selectedCategory === cat.id;
           const count = categoryCounts[cat.id] ?? cat.count;
@@ -121,7 +121,7 @@ export const Catalog: React.FC = () => {
               key={cat.id}
               type="button"
               onClick={() => setSelectedCategory(cat.id)}
-              className={`shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              className={`shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-colors ${
                 isActive
                   ? 'bg-[#423189] text-white shadow-md shadow-[#423189]/30'
                   : 'bg-[#1E213D] text-slate-300 hover:bg-[#25284B] hover:text-white border border-[#2B2F55]'

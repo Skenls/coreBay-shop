@@ -82,7 +82,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigateCatalog }) => 
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/75 md:bg-black/60 md:backdrop-blur-sm"
             aria-hidden="true"
           />
 
@@ -93,7 +93,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigateCatalog }) => 
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-              className="w-screen max-w-md bg-[#1E213D] text-white shadow-2xl flex flex-col border-l border-white/10"
+              className="w-screen max-w-md bg-[#1E213D] text-white shadow-2xl flex flex-col border-l border-white/10 transform-gpu"
               role="dialog"
               aria-modal="true"
               aria-labelledby="cart-title"
@@ -258,7 +258,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigateCatalog }) => 
 
               {/* Drawer Footer */}
               {items.length > 0 && (
-                <div className="p-4 sm:p-6 border-t border-white/10 bg-[#1A1D36]/80 backdrop-blur space-y-4">
+                <div className="p-4 sm:p-6 border-t border-white/10 bg-[#1A1D36] sm:bg-[#1A1D36]/90 sm:backdrop-blur space-y-4">
                   {/* Total price row */}
                   <div className="flex items-baseline justify-between">
                     <span className="text-sm text-white/70">Итого к оплате:</span>
@@ -298,7 +298,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigateCatalog }) => 
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onClick={() => setShowCheckoutModal(false)}
-                  className="fixed inset-0 bg-black/70 backdrop-blur-md"
+                  className="fixed inset-0 bg-black/85 md:bg-black/70 md:backdrop-blur-md"
                 />
 
                 <motion.div
@@ -306,7 +306,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigateCatalog }) => 
                   animate={{ scale: 1, opacity: 1, y: 0 }}
                   exit={{ scale: 0.9, opacity: 0, y: 20 }}
                   transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-                  className="relative z-10 w-full max-w-md bg-[#25284B] border border-white/15 rounded-3xl p-6 sm:p-8 text-white shadow-2xl text-center space-y-5"
+                  className="relative z-10 w-full max-w-md bg-[#25284B] border border-white/15 rounded-3xl p-6 sm:p-8 text-white shadow-2xl text-center space-y-5 transform-gpu"
                   role="dialog"
                   aria-modal="true"
                   aria-labelledby="checkout-modal-title"

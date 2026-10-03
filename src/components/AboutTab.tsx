@@ -36,7 +36,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ onNavigateCatalog }) => {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-6 text-white shadow-xl hover:-translate-y-1 transition-transform"
+          className="bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-6 text-white shadow-xl md:hover:-translate-y-1 transition-transform transform-gpu"
         >
           <div className="w-12 h-12 rounded-xl bg-[#423189] flex items-center justify-center mb-5 text-[#8B6FF0]">
             <Cpu className="w-6 h-6" />
@@ -52,7 +52,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ onNavigateCatalog }) => {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-6 text-white shadow-xl hover:-translate-y-1 transition-transform"
+          className="bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-6 text-white shadow-xl md:hover:-translate-y-1 transition-transform transform-gpu"
         >
           <div className="w-12 h-12 rounded-xl bg-[#423189] flex items-center justify-center mb-5 text-[#8B6FF0]">
             <ShieldCheck className="w-6 h-6" />
@@ -68,7 +68,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ onNavigateCatalog }) => {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-6 text-white shadow-xl hover:-translate-y-1 transition-transform"
+          className="bg-[#1E213D] border border-[#2B2F55] rounded-2xl p-6 text-white shadow-xl md:hover:-translate-y-1 transition-transform transform-gpu"
         >
           <div className="w-12 h-12 rounded-xl bg-[#423189] flex items-center justify-center mb-5 text-[#8B6FF0]">
             <Zap className="w-6 h-6" />

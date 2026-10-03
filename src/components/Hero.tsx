@@ -73,12 +73,12 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
   return (
     <section className="relative w-full h-[100svh] min-h-[38rem] sm:min-h-[42rem] overflow-hidden flex flex-col items-center justify-center bg-white select-none">
       {/* Ambient background glow & subtle dot matrix (optimized for mobile 60/120fps) */}
-      <div className="absolute inset-0 bg-[radial-gradient(#E4E0F2_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
+      <div className="hidden sm:block absolute inset-0 bg-[radial-gradient(#E4E0F2_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
       <div className="hidden sm:block absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-b from-[#8B6FF0]/10 via-[#423189]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       {/* LEFT HANGING ITEM: Flagship GPU on main plane, intersecting headline */}
       <motion.div
-        style={{ y: shouldDisableParallax ? 0 : parallaxLeftY }}
+        style={shouldDisableParallax ? undefined : { y: parallaxLeftY }}
         className="absolute -left-14 xs:-left-16 sm:left-[-2%] md:left-[0%] lg:left-[3%] xl:left-[6%] top-20 sm:top-0 z-10 pointer-events-none opacity-95 sm:opacity-100 transition-opacity duration-300"
       >
         <div className="animate-sway-left transform-gpu">
@@ -117,7 +117,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
 
       {/* RIGHT HANGING ITEM: MacBook on main plane, intersecting headline */}
       <motion.div
-        style={{ y: shouldDisableParallax ? 0 : parallaxRightY }}
+        style={shouldDisableParallax ? undefined : { y: parallaxRightY }}
         className="absolute -right-16 xs:-right-20 sm:right-[-2%] md:right-[0%] lg:right-[3%] xl:right-[6%] top-28 sm:top-0 z-10 pointer-events-none opacity-95 sm:opacity-100 transition-opacity duration-300"
       >
         <div className="animate-sway-right transform-gpu">
@@ -156,7 +156,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
 
       {/* CENTER HEADLINE & CTA */}
       <motion.div
-        style={{ y: shouldDisableParallax ? 0 : titleY, opacity: shouldDisableParallax ? 1 : titleOpacity }}
+        style={shouldDisableParallax ? undefined : { y: titleY, opacity: titleOpacity }}
         className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center justify-center pt-8 sm:pt-0"
       >
 
@@ -174,8 +174,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
               }}
               className={
                 line.gradient
-                  ? 'bg-gradient-to-r from-[#423189] via-[#6D54CD] to-[#8B6FF0] bg-clip-text text-transparent pb-1 drop-shadow-[0_2px_18px_rgba(255,255,255,0.92)] drop-shadow-[0_0_8px_rgba(255,255,255,0.85)]'
-                  : 'text-[#1E213D] drop-shadow-[0_2px_18px_rgba(255,255,255,0.92)] drop-shadow-[0_0_8px_rgba(255,255,255,0.85)]'
+                  ? 'bg-gradient-to-r from-[#423189] via-[#6D54CD] to-[#8B6FF0] bg-clip-text text-transparent pb-1 drop-shadow-[0_1px_6px_rgba(255,255,255,0.95)] sm:drop-shadow-[0_2px_18px_rgba(255,255,255,0.92)] sm:drop-shadow-[0_0_8px_rgba(255,255,255,0.85)]'
+                  : 'text-[#1E213D] drop-shadow-[0_1px_6px_rgba(255,255,255,0.95)] sm:drop-shadow-[0_2px_18px_rgba(255,255,255,0.92)] sm:drop-shadow-[0_0_8px_rgba(255,255,255,0.85)]'
               }
             >
               {line.text}
@@ -188,7 +188,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: prefersReducedMotion ? 0 : 0.68, duration: prefersReducedMotion ? 0 : 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-4 sm:mt-7 max-w-xl text-sm sm:text-lg md:text-xl text-slate-700 font-medium leading-relaxed px-3 py-1 bg-white/75 sm:bg-white/40 backdrop-blur-[3px] sm:backdrop-blur-none rounded-xl"
+          className="mt-4 sm:mt-7 max-w-xl text-sm sm:text-lg md:text-xl text-slate-700 font-medium leading-relaxed px-3 py-1 bg-white/90 sm:bg-white/40 rounded-xl"
         >
           Флагманские видеокарты, ультрабуки и компоненты для тех, кто строит будущее.
         </motion.p>
@@ -237,7 +237,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigateCatalog, onNavigateAbout }
         <span className="text-[11px] uppercase tracking-[0.2em] text-slate-400 group-hover:text-[#423189] font-semibold transition-colors duration-200">
           Листайте вниз
         </span>
-        <div className="w-5 h-8 rounded-full border-2 border-slate-300 group-hover:border-[#423189] flex justify-center pt-1.5 transition-colors duration-200 bg-white/70 backdrop-blur-[2px] shadow-sm">
+        <div className="w-5 h-8 rounded-full border-2 border-slate-300 group-hover:border-[#423189] flex justify-center pt-1.5 transition-colors duration-200 bg-white/90 shadow-sm">
           <div className="w-1 h-2 rounded-full bg-[#423189] animate-wheel" />
         </div>
       </motion.div>

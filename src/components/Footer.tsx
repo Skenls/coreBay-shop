@@ -35,8 +35,8 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
   return (
     <footer className="w-full bg-[#1E213D] text-white rounded-t-3xl sm:rounded-t-[40px] pt-14 pb-10 px-4 sm:px-6 lg:px-8 border-t border-white/10 shadow-2xl relative overflow-hidden">
       {/* Decorative background glow elements */}
-      <div className="absolute -top-24 left-1/4 w-96 h-96 bg-[#423189]/30 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-[#8B6FF0]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute -top-24 left-1/4 w-96 h-96 bg-[#423189]/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute -bottom-24 right-1/4 w-96 h-96 bg-[#8B6FF0]/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Prominent Demo Disclaimer Banner */}
